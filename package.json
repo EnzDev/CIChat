@@ -1,0 +1,31 @@
+{
+  "name": "cichat",
+  "version": "1.0.0",
+  "description": "Chat en ligne avec Integration Continue  * base de donnée  * Test Unitaires  * Variables d'environnement  * Notif Slack  * Codestyle  * Artifactory  * Rollback Deployement",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnzDev/CIChat.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "Mallard - Sailly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnzDev/CIChat/issues"
+  },
+  "homepage": "https://github.com/EnzDev/CIChat#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.0-rc0",
+    "mongoose": "^4.13.7",
+    "passport": "^0.4.0",
+    "passport-accesstoken": "^0.1.0",
+    "passport-local": "^1.0.0"
+  }
+}
