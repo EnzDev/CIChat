@@ -23,11 +23,12 @@ var port =  process.env.PORT || 80  // Set the default port if no args and $env:
 
 
 // Distant DocumentDB
+var autoIncrement = require('mongoose-auto-increment');
 
 MongoSetup = {}
- 
+
 MongoSetup.uristring = 'mongodb://localhost:27017/API'
- 
+
 MongoSetup.init = () => mongoose.connect(MongoSetup.uristring, function (err) {
     if (err) {
         console.log(`E MongoDB: Can't connect to database at ${b(MongoSetup.uristring)}.`)
@@ -41,6 +42,7 @@ MongoSetup.init = () => mongoose.connect(MongoSetup.uristring, function (err) {
 })
 
 
+
 // Token/Login strategy
 // =============================================================================
 var TokenStrategy = require('passport-accesstoken').Strategy
@@ -49,7 +51,7 @@ var LocalStrategy = require('passport-local').Strategy
 passport.use(new TokenStrategy(
     function (token, done) {
         console.log(`I Passport: Using ${g("token strategy")} with token ${b(token)}`)
-        User.findOne({ token: token }, function (err, user) { // User seems to exist in the passport context (where used) 
+        User.findOne({ token: token }, function (err, user) { // User seems to exist in the passport context (where used)
             if (err) return done(err)
             if (!user || user.expiryToken < Date.now() || token === "") {
                 console.log(`I Passport: ${g("Token strategy")} failed for ${b(token)}`)
@@ -120,4 +122,4 @@ app.use('/api/', router) // Allow all url from /api to be routed with the router
 // Start the server only when DocumentDB, MongoDB and Geth are ready
 // =============================================================================
 MongoSetup.next = () => app.listen(port, () => console.log(`I Server: Listening on port ${r(port)}`))
-MongoSetup.init();
+autoIncrement.initialize(MongoSetup.init());
