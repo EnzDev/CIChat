@@ -14,4 +14,4 @@ install:
 
 script:
   - check-build
-  - mocha
+  - mocha --exit
