@@ -1,5 +1,7 @@
 // server.js
 
+class LoadingError extends Error {} // Define error for tests
+
 // Setup ExpressJS 4
 // =============================================================================
 
@@ -8,14 +10,15 @@ var express = require('express')        // ExpressJS
 var app = express()                     // Create the Express App
 var bodyParser = require('body-parser')
 var passport = require('passport')
-var { red: r, green: g, blue: b } = require('./utils') // Import coloration
-
+var utils = require('./utils') // Import coloration
+var { red: r, green: g, blue: b } = utils // Assign red/green/blue to their shortcut
 
 // configure app to use bodyParser, this help us parse POST requests
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json()); // we will use JSON data
 
-var port =  process.env.PORT || 80  // Set the default port if no args and $env:PORT is not defined
+// Set the default port if no args and $env:PORT is not defined
+var port =  process.env.PORT || 80
 
 
 // Loading DataBase
@@ -28,13 +31,15 @@ var mongoose = require('mongoose');
 
 var MongoSetup = {}
  
-MongoSetup.uristring = 'mongodb://localhost:27017/API'
+MongoSetup.host = process.env.HOST || 'localhost' // Try to get the host
+MongoSetup.uristring = `mongodb://${MongoSetup.host}:27017/API`
 
 MongoSetup.init = () => mongoose.connect(MongoSetup.uristring, function (err) {
     if (err) {
         console.log(`E MongoDB: Can't connect to database at ${b(MongoSetup.uristring)}.`)
         console.log(`E MongoDB: ${r(err.message)}`)
         console.log(`E Server: Could not load a component : ${g('MongoDB')}`)
+        console.log(new LoadingError(r('MongoDB loading')))
         process.exit()
     } else {
         console.log(`I MongoDB: Connected to ${b(MongoSetup.uristring)}`)
@@ -46,6 +51,7 @@ MongoSetup.init = () => mongoose.connect(MongoSetup.uristring, function (err) {
 
 // Token/Login strategy
 // =============================================================================
+var User = require('./model/User')
 var TokenStrategy = require('passport-accesstoken').Strategy
 var LocalStrategy = require('passport-local').Strategy
 
@@ -54,7 +60,7 @@ passport.use(new TokenStrategy(
         console.log(`I Passport: Using ${g('token strategy')} with token ${b(token)}`)
         User.findOne({ token: token }, function (err, user) { // User seems to exist in the passport context (where used) 
             if (err) return done(err)
-            if (!user || user.expiryToken < Date.now() || token === '') {
+            if (!user || user.expiration < Date.now() || token === '') {
                 console.log(`I Passport: ${g('Token strategy')} failed for ${b(token)}`)
                 if (!user) return done(null, false)
                 user.token = ''
@@ -73,7 +79,7 @@ passport.use(new LocalStrategy(
     { usernameField: 'user', passwordField: 'password' },
     function (username, password, done) {
         console.log(`I Passport: Using ${g('password strategy')} for user ${b(username)}`)
-        User.findOne({ user: username }, function (err, user) {
+        User.findOne({ username: username }, function (err, user) {
             if (err) { return done(err); }
             if (!user || user.password !== utils.hashAndDigest(password)) {
                 console.log(`I Passport: Cannot login user ${b(username)} with ${g('password strategy')}`)
