@@ -6,6 +6,18 @@ var { red: r, green: g, blue: b } = utils
 
 
 module.exports = function (router, passport) {
+    router.route('/user')
+        .get(function(req, res){
+            User.find({}).
+            select('username').
+            exec(function (err, docs) {
+                if (err) return res.status(409).json(
+                    { status: utils.fail('Error while retrieving') }
+                ) // Failed because the suername is already present
+                res.json(docs)
+            });
+        })
+
     router.route('/user/register')
         .post(function (req, res) { // Create a new account
             var userData = {
