@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>T'Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+<div class="head">
+  <div><h1>Chat</h1></div>
+  <div><button onclick="document.getElementById('connection').style.display='block'" class="">C'est déconnecté</button></div>
+</div>
+
+<div id="connection" class="modal">
+    <div class="modalBox">
+      <div class="w3-container">
+        <span onclick="document.getElementById('connection').style.display='none'" class="close">&times;</span>
+        <form action="#">
+          <div class="connect">
+            Username<br>
+            <input type="text" name="username"><br>
+            Password<br>
+            <input type="password" name="password"><br>
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<div class="texte">
+</div>
+
+<div class="message">
+<form action="#">
+Votre message:
+<input type="text" name="message" class="messageInput">
+<input type="submit" value="Submit">
+</form>
+</div>
+
+</div>
+
+</body>
+</html>

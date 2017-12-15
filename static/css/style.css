@@ -1,0 +1,59 @@
+.page{}
+
+.head {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
+
+.modal{
+  display:none;
+  padding-top:100px;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  overflow:auto;
+  background-color:rgb(0,0,0);
+  background-color:rgba(0,0,0,0.4);
+}
+
+.modalBox{
+  margin:auto;
+  background-color:#fff;
+  position:relative;
+  padding:15px;
+  outline:0;
+  width:600px
+}
+
+.close{
+  border:1px solid #ccc;
+  display:inline-block;
+  outline:0;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-align:center;
+  cursor:pointer;
+}
+
+.connect{
+text-align:center;
+}
+
+.texte{
+  height: 550px;
+  overflow-y: scroll;
+  border:1px solid #ccc;
+}
+
+.message{}
+
+.messageInput{
+  padding:8px;
+  display:block;
+  border:1px solid #ccc;
+  width:90%;
+}
