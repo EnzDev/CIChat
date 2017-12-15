@@ -1,20 +1,20 @@
 /** Generate a standard return object
 * @private
 * @param {Boolean} status The error status
-* @param {String} [msg=""] The message to use
+* @param {String} [msg=''] The message to use
 */
-genObj = (status, msg) => ({
+var genObj = (status, msg) => ({
     error: status,
-    msg: msg || ""
+    msg: msg || ''
 });
 
 /** Generate a failed object
- * @param {String} [msg=""]
+ * @param {String} [msg='']
  */
 module.exports.fail = (msg) => genObj(true, msg);
 
 /** Generate a succeed object
- * @param {String} [msg=""]
+ * @param {String} [msg='']
  */
 module.exports.success = (msg) => genObj(false, msg);
 
@@ -25,13 +25,13 @@ module.exports.mkpassword = function () {
     let p, l = 0
     while (l < 30) {
         // Generate 48 bytes and remove non printable chars
-        p = require('crypto').randomBytes(48).toString("ASCII").replace(/[^\x20-\x7E]/g, "")
+        p = require('crypto').randomBytes(48).toString('ASCII').replace(/[^\x20-\x7E]/g, '')
         l = p.length
     }
     return p
 }
 
-const crypto = require("crypto");
+const crypto = require('crypto');
 
 /** Generate a new 32Bytes hex token for the User
  * @param {User} user A mongoose User instance
@@ -48,14 +48,15 @@ module.exports.genToken = function (user) {
 module.exports.hashAndDigest = function (toHash) {
     let hash = crypto.createHash('sha256')
     hash.update(toHash)
-    return hash.digest("hex")
+    return hash.digest('hex')
 }
 
 /** Format the string with the given code
  * @param {String} s The string to format
  * @param {Number} u Formatter code (typically an ANSI color code)
  */
-strC = (s, u)=> "\x1b["+ u +"m" + s + "\x1b[0m"
+var strC = (s, u)=> `\x1b[${u}m${s}\x1b[0m`
+
 module.exports.blue  = (s) => strC(s, 34)
 module.exports.green = (s) => strC(s, 32)
 module.exports.red   = (s) => strC(s, 31)
