@@ -2,9 +2,9 @@
   "name": "cichat",
   "version": "1.0.0",
   "description": "Chat en ligne avec Integration Continue  * base de donnée  * Test Unitaires  * Variables d'environnement  * Notif Slack  * Codestyle  * Artifactory  * Rollback Deployement",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,13 @@
     "express": "^4.16.2",
     "mongodb": "^3.0.0-rc0",
     "mongoose": "^4.13.7",
+    "mongoose-auto-increment": "^5.0.1",
     "passport": "^0.4.0",
     "passport-accesstoken": "^0.1.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0"
   }
 }
