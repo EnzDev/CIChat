@@ -10,4 +10,4 @@ MessageSchema.plugin(autoIncrement.plugin, {
     startAt: 0,
     incrementBy: 1
 });
-module.export = mongoose.model("Message" , MessageSchema)
+module.exports = mongoose.model("Message" , MessageSchema)
