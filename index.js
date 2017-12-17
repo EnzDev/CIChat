@@ -17,8 +17,7 @@ var { red: r, green: g, blue: b } = utils // Assign red/green/blue to their shor
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json()); // we will use JSON data
 
-// Set the default port if no args and $env:PORT is not defined
-var port =  process.env.PORT || 80
+
 
 
 // Loading DataBase
@@ -31,7 +30,7 @@ var mongoose = require('mongoose');
 
 var MongoSetup = {}
  
-MongoSetup.host = process.env.HOST || 'localhost' // Try to get the host
+MongoSetup.host = process.env.HOST || 'enzomallard.fr' // Try to get the host
 MongoSetup.uristring = `mongodb://${MongoSetup.host}:27017/API`
 
 MongoSetup.init = () => mongoose.connect(MongoSetup.uristring, function (err) {
@@ -123,10 +122,13 @@ router.get('/', function (req, res) {
 // Include the four routers
 // Routes
 
-app.use('/api/', router) // Allow all url from /api to be routed with the router
+router = require('./route/user')(router, passport)
+
+app.use('/', router) // Allow all url from /api to be routed with the router
 
 
 // Start the server only when DocumentDB, MongoDB and Geth are ready
 // =============================================================================
-MongoSetup.next = () => app.listen(port, () => console.log(`I Server: Listening on port ${r(port)}`))
-autoIncrement.initialize(MongoSetup.init());
+MongoSetup.next = ()=>{}
+autoIncrement.initialize(MongoSetup.init())
+module.exports = app
