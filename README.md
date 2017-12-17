@@ -1,9 +1,9 @@
 # CIChat
 Chat en ligne avec Integration Continue
- * base de donnée
- * Test Unitaires
- * Variables d'environnement
- * Notif Slack
- * Codestyle
- * Artifactory
- * Rollback Deployement
+ * [x] Base de donnée (MongoDB)
+ * [x] Test Unitaires (Mocha + Chai)
+ * [ ] Variables d'environnement
+ * [ ] Notif Slack
+ * [x] Codestyle
+ * [ ] Artifactory
+ * [ ] Rollback Deployement
