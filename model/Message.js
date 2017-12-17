@@ -1,4 +1,5 @@
-var mongoose = require("mongoose")
+var mongoose = require('mongoose')
+var autoIncrement = require('mongoose-auto-increment');
 
 var MessageSchema = new mongoose.Schema({
   username : String,
@@ -10,4 +11,4 @@ MessageSchema.plugin(autoIncrement.plugin, {
     startAt: 0,
     incrementBy: 1
 });
-module.exports = mongoose.model("Message" , MessageSchema)
+module.exports = mongoose.model('Message' , MessageSchema)
