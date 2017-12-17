@@ -33,7 +33,7 @@ module.exports = function (router, passport) {
 
             newUser.save(function (err) { // Try to save the new user
                 if (err) return res.status(409).json({ status: utils.fail('Username already registered') }) // Failed because the suername is already present
-                console.log(`I MongoDB: Created a new user ${b(req.body.user)}`)
+                console.warn(`I MongoDB: Created a new user ${b(req.body.user)}`)
                 res.json({ status: utils.success('Account have been created'), token: newUser.token })
             })
         })
