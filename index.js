@@ -118,9 +118,9 @@ router.use(function (req, res, next) {
 app.use(passport.initialize())
 app.use(passport.session())
 
-router.get('/', function (req, res) {
+/* router.get('/', function (req, res) {
     res.send('Bonjour')
-})
+}) */
 
 
 MongoSetup.next = ()=>{}
@@ -133,7 +133,7 @@ router = require('./route/user')(router, passport)
 router = require('./route/message')(router, passport)
 
 app.use('/', router) // Allow all url from /api to be routed with the router
-
+app.use(express.static(require('path').join(__dirname, 'static')))
 
 // Start the server only when DocumentDB, MongoDB and Geth are ready
 // =============================================================================
