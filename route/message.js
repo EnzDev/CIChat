@@ -22,7 +22,7 @@ module.exports = function (router, passport) {
             })(req, res);
         })
         .get(function (req, res){
-            Message.find({})
+            Message.find({messageId:{$gt: req.query.starting || -1}})
             .select('messageId value username')
             .exec(function(err, messages) {
                 res.send(messages)
