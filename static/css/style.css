@@ -1,6 +1,64 @@
+:root {
+  --dark  : rgb(32, 32, 40);
+  --darker: rgb(16, 16, 20);
+}
+
+body {
+  padding: 5px;
+  height: calc(100vh - 10px);
+  background: var(--dark);
+}
+
+.clear {
+  flex-grow: 1;
+}
+
+.flex-c {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
+
+.separator {
+  border-right: black solid 2px;
+  height: 75%;
+  opacity: 0.6;
+}
+
+#userlist {
+  min-width: 10vw;
+}
+
+#chat {
+  overflow: auto;
+}
+
+#input *{
+  margin: auto 1vw;
+}
+
+#input button {
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
+  font-weight: bolder;
+  border: 0;
+}
+
+
+#input textarea {
+  min-height: 5vh;
+  height: auto;
+  resize: none;
+}
+
+/*
 .page{}
 
-.head {
+header {
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -57,3 +115,4 @@ text-align:center;
   border:1px solid #ccc;
   width:90%;
 }
+*/
