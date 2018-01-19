@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - 'node'
+- node
 before_install:
-  - npm install -i check-build
-
+- npm install -g mocha
 cache:
   directories:
-    - "node_modules"
-
+  - node_modules
 install:
-  - npm install
-
+- npm install
 script:
-  - check-build
+- mocha --exit 2> /dev/null
+notifications:
+  slack:
+    secure: Lrr3sU/anSyHiIaTR3IhUHqOKmxgVQEWGosQM1/FvRDA84wTJ6gP78GaSr8IMEoGmALb/XsENGDjGG22N65/3jqsYyXJOG+0NRZ7RAIRlLSLjoHSZU16vpRwbNbQoM5X2Ks+wC8XVIp9ZNzSP6sLwhZcpYLNaoBHpEpwo4Vi7agbHGqHUHUAa7I5Re8XppgcFkQJL9pVraztBRFXBzX+vYDz3FZfieDBCot9T5hfNQQbrGTmjaqChnsZKj7Wk9NBe6Zw7qpqHEZ3y2YpOS95F0+0ki/5KH9A3JZ/PjI+JJgM+DdDzp56oLHGdFc3qGlE/Y4F3cKyqrS2hTVrIU3L2IRzQFzWlo2jbApPjlA/te88eVIV+nRYDU0Y5f0LQGmAlekdmLmITbeOYYTkE2yKdJ9DFFRrcwbmg200rgRLvLFMr+2gbqkAUF/YAAEigXR60BVFgHZxsF/93Tc8DBt0Zrom9ztPMvmyGdg5fT1241r1fzXocFb1D2KaAgXg466Mj/tr/FjbXXLX5WlAJEInUTmziF9RHMaamBe5vJxmXqID6tDpj7kB1iNc4t9SHVT3e5o9bCxOtZs5EN21uR8Lq4J1ZxbO3Or9ZA6CE2UB0eHTSrxt1FPWUpQDjYlktWXi3UJBho+g8Be4XUynK9l0dH0/OkLNny2ymV39OT3il04=

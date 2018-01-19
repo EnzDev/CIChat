@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/register.css">
+    <title>Register</title>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(function(){
+            $("input[type=submit]").click(function(e){
+                e.preventDefault()
+                
+            })
+            $("input#pass").on("change", (e)=>{
+                $("input#passconfirm").prop("pattern",e.target.value)
+            })
+        })
+    </script>
+    
+</head>
+<body>
+    <form>
+        <legend>Register</legend>
+
+        <input required type="text" name="username" id="username" placeholder="Username">
+        <input required type="password" name="password" id="pass" placeholder="Password">
+        <input required pattern="" type="password" name="password" id="passconfirm" placeholder="Repeat your password">
+        
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
