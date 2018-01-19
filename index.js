@@ -39,7 +39,7 @@ MongoSetup.init = () => mongoose.connect(MongoSetup.uristring, function (err) {
         console.error(`E MongoDB: ${r(err.message)}`)
         console.error(`E Server: Could not load a component : ${g('MongoDB')}`)
         console.warn(new LoadingError(r('MongoDB loading')))
-        process.exit()
+        // TODO uncomment : process.exit()
     } else {
         console.warn(`I MongoDB: Connected to ${b(MongoSetup.uristring)}`)
         MongoSetup.next();

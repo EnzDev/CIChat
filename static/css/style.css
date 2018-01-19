@@ -55,6 +55,25 @@ body {
   resize: none;
 }
 
+.message{
+  display: grid;
+  grid-template-columns: [date] 8vw [name] 10vw [message] auto;
+}
+
+.time{ grid-area: date; }
+
+.user{
+  grid-area: name;
+  overflow: hidden;
+  margin-right: 1vw;
+}
+
+.message-content { grid-area: message; }
+
+.date-container{
+  margin: auto;
+}
+
 /*
 .page{}
 

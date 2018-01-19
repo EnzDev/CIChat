@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="//code.jquery.com/jquery-latest.js"></script>
+  <script src="/script/main.js"></script>
+  <script src="/script/message.js"></script>
   <script>
     // showLogin = ()=>$.ajax("/register.html").success((o)=>$(".modalBox").append(o))
   </script>
@@ -18,15 +20,28 @@
   <section id="mainbox" class="clear flex-c">
     <div class="clear"></div>
     <section id="chat" class="flex-c">
-      <div>
-        
+      <div class="date-container">
+        vendredi 12 Novembre
       </div>
+      <div class="message">
+        <div class="time">09:13 PM</div>
+        <div class="user">Enzouille</div>
+        <div class="message-content">Hello les gens</div>
+      </div>
+      <div class="message">
+        <div class="user">Enzouille</div>
+        <div class="message-content">Bonjour</div>
+      </div>
+      <div class="message">
+          <div class="user">Enzouille</div>
+          <div class="message-content">Some kind of very long message <br> with new line</div>
+        </div>
     </section>
-    <section id="input" class="flex">
+    <form id="input" class="flex">
       <button>+</button>
       <span class="separator"></span>
       <textarea rows="1" type="text" name="text" id="textvalue" class="clear"></textarea>
-    </section>
+    </form>
   </section>
 
   <section id="userlist" class="flex-c">
