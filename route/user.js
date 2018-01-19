@@ -14,7 +14,7 @@ module.exports = function (router, passport) {
                 if (err) return res.status(409).json(
                     { status: utils.fail('Error while retrieving') }
                 ) // Failed because the suername is already present
-                res.json(docs)
+                res.json({ status: utils.success(''), users:docs})
             });
         })
 

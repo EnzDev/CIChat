@@ -25,7 +25,7 @@ module.exports = function (router, passport) {
             Message.find({messageId:{$gt: req.query.starting || -1}})
             .select('messageId value username')
             .exec(function(err, messages) {
-                res.send(messages)
+                res.json({status:utils.success(''), messages})
             });
         })
 

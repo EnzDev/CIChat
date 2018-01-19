@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>T'Chat</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T'Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="css/style.css">
+  <!-- Reset da freakin base CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="//code.jquery.com/jquery-latest.js"></script>
+  <script src="/script/main.js"></script>
+  <script src="/script/message.js"></script>
+  <script>
+    // showLogin = ()=>$.ajax("/register.html").success((o)=>$(".modalBox").append(o))
+  </script>
 </head>
-<body>
 
-<div class="page">
-
-<div class="head">
-  <div><h1>Chat</h1></div>
-  <div><button onclick="document.getElementById('connection').style.display='block'" class="">C'est déconnecté</button></div>
-</div>
-
-<div id="connection" class="modal">
-    <div class="modalBox">
-      <div class="w3-container">
-        <span onclick="document.getElementById('connection').style.display='none'" class="close">&times;</span>
-        <form action="#">
-          <div class="connect">
-            Username<br>
-            <input type="text" name="username"><br>
-            Password<br>
-            <input type="password" name="password"><br>
-            <input type="submit" value="Submit">
-          </div>
-        </form>
+<body class="flex">
+  <section id="mainbox" class="clear flex-c">
+    <div class="clear"></div>
+    <section id="chat" class="flex-c">
+      <div class="date-container">
+        vendredi 12 Novembre
       </div>
+      <div class="message">
+        <div class="time">09:13 PM</div>
+        <div class="user">Enzouille</div>
+        <div class="message-content">Hello les gens</div>
+      </div>
+      <div class="message">
+        <div class="user">Enzouille</div>
+        <div class="message-content">Bonjour</div>
+      </div>
+      <div class="message">
+          <div class="user">Enzouille</div>
+          <div class="message-content">Some kind of very long message <br> with new line</div>
+        </div>
+    </section>
+    <form id="input" class="flex">
+      <button>+</button>
+      <span class="separator"></span>
+      <textarea rows="1" type="text" name="text" id="textvalue" class="clear"></textarea>
+    </form>
+  </section>
+
+  <section id="userlist" class="flex-c">
+    <div id="users" class="clear">
+      <div>Usr1</div>
+      <div>Usr2</div>
+      <div>Usr3</div>
     </div>
-  </div>
-
-
-<div class="texte">
-</div>
-
-<div class="message">
-<form action="#">
-Votre message:
-<input type="text" name="message" class="messageInput">
-<input type="submit" value="Submit">
-</form>
-</div>
-
-</div>
-
+    <div id="login">Login</div>
+  </section>
 </body>
 </html>
