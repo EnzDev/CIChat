@@ -38,7 +38,7 @@ const crypto = require('crypto');
  */
 module.exports.genToken = function (user) {
     user.token = crypto.randomBytes(32).toString('hex')
-    user.expiryToken = Date.now() + 1000 * 60 * 60 // Make the token valid for 1 hour
+    user.expiration = Date.now() + 1000 * 60 * 60 // Make the token valid for 1 hour
 }
 
 /** Create a sha256 hash for the given string
