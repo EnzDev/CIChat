@@ -35,8 +35,9 @@ describe('Message', () => {
             .get('/message')
             .end((err, res) => {
                 expect(res.status).to.equal(200)
-                res.body.should.be.a('array')
-                res.body.length.should.be.eql(0)
+                res.body.should.be.a('object')
+                res.body.messages.should.be.a('array')
+                res.body.messages.length.should.be.eql(0)
                 done()
             })
         })
@@ -63,8 +64,9 @@ describe('Message', () => {
                     .get('/message')
                     .end((err, res) => {
                         expect(res.status).to.equal(200)
-                        res.body.should.be.a('array')
-                        res.body.length.should.be.eql(1)
+                        res.body.should.be.a('object')
+                        res.body.messages.should.be.a('array')
+                        res.body.messages.length.should.be.eql(1)
                         done()
                     })
                 })

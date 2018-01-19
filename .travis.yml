@@ -2,15 +2,13 @@ language: node_js
 node_js:
 - node
 before_install:
-- npm install -i check-build
-- npm install -i mocha
+- npm install -g mocha
 cache:
   directories:
   - node_modules
 install:
 - npm install
 script:
-- check-build
 - mocha --exit 2> /dev/null
 notifications:
   slack:
