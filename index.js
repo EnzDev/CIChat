@@ -89,7 +89,8 @@ passport.use(new LocalStrategy(
             }
 
             console.warn(`I Passport: Successfully login ${b(username)}, updating token...`)
-            utils.genToken(user) // Update the user token with a valid one and make it valid for 1 hour
+            utils.genToken(user) 
+            // Update the user token with a valid one and make it valid for 1 hour
             user.save(function () {
                 return done(null, user)
             })
@@ -134,6 +135,10 @@ router = require('./route/message')(router, passport)
 
 app.use('/', router) // Allow all url from /api to be routed with the router
 app.use(express.static(require('path').join(__dirname, 'static')))
+
+// Lets use SocketIO !
+// =============================================================================
+// See /main.js
 
 // Start the server only when DocumentDB, MongoDB and Geth are ready
 // =============================================================================
