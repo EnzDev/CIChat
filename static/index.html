@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>T'Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+  <!-- Reset da freakin base CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="//code.jquery.com/jquery-latest.js"></script>
+  <script src="/script/main.js"></script>
+  <script src="/script/message.js"></script>
+  <script>
+    // showLogin = ()=>$.ajax("/register.html").success((o)=>$(".modalBox").append(o))
+  </script>
+</head>
+
+<body class="flex">
+  <section id="mainbox" class="clear flex-c">
+    <div class="clear"></div>
+    <section id="chat" class="flex-c">
+      <div class="date-container">
+        vendredi 12 Novembre
+      </div>
+      <div class="message">
+        <div class="time">09:13 PM</div>
+        <div class="user">Enzouille</div>
+        <div class="message-content">Hello les gens</div>
+      </div>
+      <div class="message">
+        <div class="user">Enzouille</div>
+        <div class="message-content">Bonjour</div>
+      </div>
+      <div class="message">
+          <div class="user">Enzouille</div>
+          <div class="message-content">Some kind of very long message <br> with new line</div>
+        </div>
+    </section>
+    <form id="input" class="flex">
+      <button>+</button>
+      <span class="separator"></span>
+      <textarea rows="1" type="text" name="text" id="textvalue" class="clear"></textarea>
+    </form>
+  </section>
+
+  <section id="userlist" class="flex-c">
+    <div id="users" class="clear">
+      <div>Usr1</div>
+      <div>Usr2</div>
+      <div>Usr3</div>
+    </div>
+    <div id="login">Login</div>
+  </section>
+</body>
+</html>

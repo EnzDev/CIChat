@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>T'Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+
+  <!-- Reset da freakin base CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script src="//code.jquery.com/jquery-latest.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- <script src="/script/main.js"></script> -->
+  <script src="/script/message.js"></script>
+  <script>
+    var socket = io()
+  </script>
+</head>
+
+<body class="flex">
+  <div class="flex" id="app">
+    <section id="mainbox" class="clear flex-c">
+      <div class="clear"></div>
+      <section id="chat" class="flex-c">
+        <message v-for="(m, key) in messages" v-if="m != undefined" :key="key" :date="m.date" :sender="m.sender" :content="m.content"
+        />
+      </section>
+      <form id="input" class="flex">
+        <button>+</button>
+        <span class="separator"></span>
+        <textarea rows="1" type="text" name="text" id="textvalue" class="clear"></textarea>
+      </form>
+    </section>
+
+    <section id="userlist" class="flex-c">
+      <div id="users" class="clear">
+        <div v-for="user of users">{{ user }}</div>
+      </div>
+      <div id="login">Login</div>
+    </section>
+
+    <div id="select" v-if="!isLoggedIn" class="flex-c">
+      <form action="/login" method="post" v-if="showLogin" class="flex-c">
+          <input type="text" name="username" placeholder="Username"><br>
+          <input type="password" name="password" placeholder="password"><br>
+          <input type="submit" title="Login" value="Login">
+          <div @click="showLogin=false">New here ? Click to register.</div>
+      </form>
+      <form action="/register" method="post" v-if="!showLogin" class="flex-c">
+          <input type="text" name="username" placeholder="Username"><br>
+          <input type="password" name="password" placeholder="password"><br>
+          <input type="password" name="password" placeholder="confirm your password"><br>
+          <input type="submit" title="Register" value="Register">
+          <div @click="showLogin=true">Already have an account ? Click to login</div>
+      </form>
+  </div>
+
+  </div>
+</body>
+
+<script type="text/x-template" id="x-template-message">
+  <div class="message">
+    <div class="time">{{ normalize(date) }}</div>
+    <div class="user">{{ sender }}</div>
+    <div class="message-content">{{ content }}</div>
+  </div>
+</script>
+
+<script src="script/vuescript.js"></script>
+
+</html>
