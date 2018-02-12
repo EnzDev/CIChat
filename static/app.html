@@ -41,6 +41,23 @@
       </div>
       <div id="login">Login</div>
     </section>
+
+    <div id="select" v-if="!isLoggedIn" class="flex-c">
+      <form action="/login" method="post" v-if="showLogin" class="flex-c">
+          <input type="text" name="username" placeholder="Username"><br>
+          <input type="password" name="password" placeholder="password"><br>
+          <input type="submit" title="Login" value="Login">
+          <div @click="showLogin=false">New here ? Click to register.</div>
+      </form>
+      <form action="/register" method="post" v-if="!showLogin" class="flex-c">
+          <input type="text" name="username" placeholder="Username"><br>
+          <input type="password" name="password" placeholder="password"><br>
+          <input type="password" name="password" placeholder="confirm your password"><br>
+          <input type="submit" title="Register" value="Register">
+          <div @click="showLogin=true">Already have an account ? Click to login</div>
+      </form>
+  </div>
+
   </div>
 </body>
 

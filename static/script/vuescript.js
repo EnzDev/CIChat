@@ -26,6 +26,7 @@ var main = new Vue({
         lastMessage: 0,
         isLoggedIn: false,
         updater: undefined,
+        showLogin: true,
     },
     methods: {
         updateUsers: function(){
