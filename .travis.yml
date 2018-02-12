@@ -14,9 +14,6 @@ install:
 - npm install
 script:
 - mocha --exit 2> /dev/null
-notifications:
-  slack:
-    secure: D7+Pc1Ou+VYrwqxY/1Ge+8VefILNttRDty3sREJQZY9LIcXXWx633myH494BwhZdz6TLFC1S616TbeFm25IboxPd5p6jMRiGEnC3cVLzofnaDMm40pwZT0jPEvHhVL6jA9d2zl2OlpcyJLHEECLiowgD6voxXZEqJSZScibncwGjEze4MXtcHixhF6mTyrLubDpnbnTJCObDAvcsqXnzLNCRAMjmPQnX792vbj0Hv6LuoJ4HwBvlk6naH8jeitFt50i9WSaP2dzhf+80+thmKb25n82UOm314EKxNHX60w5r4rQseTpWv0K8eMHH23VNMCw3HNz2XaIYpRhLZ1gR4C5S5nQILkkMofIWCsztBKjcyZKgZuAGgpWJFwPgtvzGKdApsZrrCd0EWIxemr390evticH3RdWmlRBnuMO5kvhYgaKA3Yl9T+n3UOYyBSp0cJKMI3naqcHqN6PSG4vGS2kzUu9wZdkI0GKzISlKRlo55hwupAHk+sRNXe9Fy8Sn3ax43CrUcERQXS+bLZl6LxZH3P4datXKuIT67GgYfIB5FQNMXPTaFD/JeoitUlcN8jt6zv6RicixqI7fdOnLhCxW0h2DdPyAxaNxHQR74N+vJ/84WAFNS4GjorD+CpzAnD6aZArMv1YSZAAxCWnXsneCr4fPveqYvqeqcEUBqKI=
 before_deploy: zip -r ~/build/build_$TRAVIS_BUILD_NUMBER.zip ~/build/EnzDev/CIChat
   -x \ \*node_modules/**\* \ \*.git/**\* \ \*.gitignore \ \*.deployarti.sh
 deploy:
@@ -30,3 +27,6 @@ deploy:
   file: "~/build/build_$TRAVIS_BUILD_NUMBER.zip"
   on:
     branch: master
+notifications:
+  slack:
+    secure: TStI4AKUKWGY+Eo4F8nFUZS+opwAhEB4dTQjD1d8sqDmyGUG2POxbYpr7I0LIq3aUjeoFmpFHfCUSRipTxGU5f5ZUyPsfWRdzWOcnznQMlWmAyA4a7CBZgfY/ZsYMOAiXN8f61LMEFN7YrDfgggKKE/pepc4d4Tewjh2eowuIZIK/08IZz5n1FnjjoEGOf8VReJlcOWi4bKWaSsMWhv91plbRUo6A/yfnVLMcPY4YVXxIzdIqEBSEWTtprJCgwbVyOn2hmtBDqNB9T7OKAboUzOFU5jHx7Z/gkguL+fuqNASf5kI4Oe9xVgzhbErCf38jtCw6Fvky7mJJNgVES9n0GRjra+XdipL7UqceyPejkIuvpKtGzP57qjDBY4b3bESLLpBqEmDS+OhVKfbnsEgA9xsRQZmpt3V1rYr2+xsGawtjuDDEBUQ20QGuD8+qylWPXNn6lqsGmGNuDRFiC+rhm8bFY7DUVuvBkHuHuNcnjqEpuA/RTOptoDgM+43cuQyE5EUOFkqqtqFYg08HRun8yo2vkDMmClG1ABo9+9qQ6rk56330rlBmGsu2EYTTGaI/7azWMvzyp44tVyY7h1QwgGlrCltwC7uCI/wobaivHZhV657Vtj0e60G/QQh5C3aoczNAaNTGuq2RJCt6KrJH1B+NSiLYPrI1pTuYUUkugQ=
