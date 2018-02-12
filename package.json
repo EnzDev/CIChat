@@ -27,7 +27,8 @@
     "mongoose-auto-increment": "^5.0.1",
     "passport": "^0.4.0",
     "passport-accesstoken": "^0.1.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "chai": "^4.1.2",

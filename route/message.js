@@ -11,7 +11,8 @@ module.exports = function (router, passport) {
 
                 var messageData = {
                     username : user.username,
-                    value : req.body.message
+                    value : req.body.message,
+                    date : new Date()
                 }
                 var newMessage = new Message(messageData)
                 newMessage.save(function (err) { // Try to save the new message
@@ -23,7 +24,7 @@ module.exports = function (router, passport) {
         })
         .get(function (req, res){
             Message.find({messageId:{$gt: req.query.starting || -1}})
-            .select('messageId value username')
+            .select('messageId value username date')
             .exec(function(err, messages) {
                 res.json({status:utils.success(''), messages})
             });

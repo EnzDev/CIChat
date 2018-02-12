@@ -3,7 +3,8 @@ var autoIncrement = require('mongoose-auto-increment');
 
 var MessageSchema = new mongoose.Schema({
   username : String,
-  value : String
+  value : String,
+  date : Date
 })
 MessageSchema.plugin(autoIncrement.plugin, {
     model: 'Message',

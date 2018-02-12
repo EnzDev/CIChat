@@ -3,10 +3,13 @@
   --darker: rgb(16, 16, 20);
 }
 
-body {
+body{ }
+
+#app {
   padding: 5px;
   height: calc(100vh - 10px);
-  background: var(--dark);
+  width: calc(100vw - 10px);
+/*background: var(--dark);*/
 }
 
 .clear {
@@ -57,7 +60,7 @@ body {
 
 .message{
   display: grid;
-  grid-template-columns: [date] 8vw [name] 10vw [message] auto;
+  grid-template-columns: [date] max-content 1vw [name] 15vw [message] auto;
 }
 
 .time{ grid-area: date; }
