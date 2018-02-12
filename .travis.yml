@@ -1,15 +1,12 @@
 language: node_js
 node_js:
-  - node
-
+- node
 before_install:
 - npm install -g mocha
-
 env:
   global:
-    - "PORT=8080"
-    - "HOST=enzomallard.fr"
-
+  - PORT=8080
+  - HOST=enzomallard.fr
 cache:
   directories:
   - node_modules
@@ -17,13 +14,19 @@ install:
 - npm install
 script:
 - mocha --exit 2> /dev/null
-notifications:
-  slack:
-    secure: Lrr3sU/anSyHiIaTR3IhUHqOKmxgVQEWGosQM1/FvRDA84wTJ6gP78GaSr8IMEoGmALb/XsENGDjGG22N65/3jqsYyXJOG+0NRZ7RAIRlLSLjoHSZU16vpRwbNbQoM5X2Ks+wC8XVIp9ZNzSP6sLwhZcpYLNaoBHpEpwo4Vi7agbHGqHUHUAa7I5Re8XppgcFkQJL9pVraztBRFXBzX+vYDz3FZfieDBCot9T5hfNQQbrGTmjaqChnsZKj7Wk9NBe6Zw7qpqHEZ3y2YpOS95F0+0ki/5KH9A3JZ/PjI+JJgM+DdDzp56oLHGdFc3qGlE/Y4F3cKyqrS2hTVrIU3L2IRzQFzWlo2jbApPjlA/te88eVIV+nRYDU0Y5f0LQGmAlekdmLmITbeOYYTkE2yKdJ9DFFRrcwbmg200rgRLvLFMr+2gbqkAUF/YAAEigXR60BVFgHZxsF/93Tc8DBt0Zrom9ztPMvmyGdg5fT1241r1fzXocFb1D2KaAgXg466Mj/tr/FjbXXLX5WlAJEInUTmziF9RHMaamBe5vJxmXqID6tDpj7kB1iNc4t9SHVT3e5o9bCxOtZs5EN21uR8Lq4J1ZxbO3Or9ZA6CE2UB0eHTSrxt1FPWUpQDjYlktWXi3UJBho+g8Be4XUynK9l0dH0/OkLNny2ymV39OT3il04=
-
-
+before_deploy: zip -r ~/build/build_$TRAVIS_BUILD_NUMBER.zip ~/build/EnzDev/CIChat
+  -x \ \*node_modules/**\* \ \*.git/**\* \ \*.gitignore \ \*.deployarti.sh
 deploy:
-  provider: script
+- provider: script
   script: bash deployarti.sh
   on:
     branch: develop
+- provider: releases
+  api_key:
+    secure: gox0SX50NBRCYfbscfNZ8b5yJxVcj9T7q5wnWEPDvMe+6eZHTEr0UzbqK/9qvY5V44wB8sTgtDxqfEK5Nc0QgwAT2W72PWFj0m8I+Hq4dwAaUMgStgyrx7rEbSJiqc29rgDh9HeBU7yGN9oYbOQUUTfhjKSrrk59oHjnRMxe6liOG3EMHCCcJnfcwrU6VPd/0tngGdnJ6R6u4ZmIdiatTc4shmtFZk4eTszbJ3fcsojLCvdCAStoCbhmUYFAySQqs/LhGc7nBJckOrM1RufR1dKuK32Hm4UScHxEOV9eoaUKHX5qzR797OqUC8gSfUyyn5Iyx3ol1CM3k/61dDsEMwGBtTcg9CrVxnssfACX74WZ8xFh9kBYS+IuhWVr+PHxX9MxtkmQwJ5KKiLQ4C1CWqqFzycRhyWquyIgiJ3HS5NP05s3PiKRpIaQtUmY6+XFR0GNa/IF3+fOsd9j0fxGw2X+6rxlVQqPWCCLojQv5QV51JBOVkkm/Xb9rlNjQLWumEx9PWnvs1w5U2HkGEYU1WVoJvHB7Dbob1pU93xdslukdoDhwomTttowGIsxAGfWHNpea0RujN93LfRHGO+DjftXvQV3R8BWv8mUohZwaVBmMVhXymHWzpONU6kiZoZOuwsp0mlkN8Mlx0rdfCvqg50IQ1q5a6pdr3wXnsXrGHk=
+  file: "~/build/build_$TRAVIS_BUILD_NUMBER.zip"
+  on:
+    branch: master
+notifications:
+  slack:
+    secure: TStI4AKUKWGY+Eo4F8nFUZS+opwAhEB4dTQjD1d8sqDmyGUG2POxbYpr7I0LIq3aUjeoFmpFHfCUSRipTxGU5f5ZUyPsfWRdzWOcnznQMlWmAyA4a7CBZgfY/ZsYMOAiXN8f61LMEFN7YrDfgggKKE/pepc4d4Tewjh2eowuIZIK/08IZz5n1FnjjoEGOf8VReJlcOWi4bKWaSsMWhv91plbRUo6A/yfnVLMcPY4YVXxIzdIqEBSEWTtprJCgwbVyOn2hmtBDqNB9T7OKAboUzOFU5jHx7Z/gkguL+fuqNASf5kI4Oe9xVgzhbErCf38jtCw6Fvky7mJJNgVES9n0GRjra+XdipL7UqceyPejkIuvpKtGzP57qjDBY4b3bESLLpBqEmDS+OhVKfbnsEgA9xsRQZmpt3V1rYr2+xsGawtjuDDEBUQ20QGuD8+qylWPXNn6lqsGmGNuDRFiC+rhm8bFY7DUVuvBkHuHuNcnjqEpuA/RTOptoDgM+43cuQyE5EUOFkqqtqFYg08HRun8yo2vkDMmClG1ABo9+9qQ6rk56330rlBmGsu2EYTTGaI/7azWMvzyp44tVyY7h1QwgGlrCltwC7uCI/wobaivHZhV657Vtj0e60G/QQh5C3aoczNAaNTGuq2RJCt6KrJH1B+NSiLYPrI1pTuYUUkugQ=
