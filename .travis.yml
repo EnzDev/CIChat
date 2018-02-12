@@ -14,8 +14,7 @@ install:
 - npm install
 script:
 - mocha --exit 2> /dev/null
-before_deploy: zip -r ~/build/build_$TRAVIS_BUILD_NUMBER.zip ~/build/EnzDev/CIChat
-  -x \ \*node_modules/**\* \ \*.git/**\* \ \*.gitignore \ \*.deployarti.sh
+before_deploy: zip -r ~/build/build_$TRAVIS_BUILD_NUMBER.zip . -x \*node_modules/**\* \*.git/**\* \*.gitignore \*.deployarti.sh
 deploy:
 - provider: script
   script: bash deployarti.sh
